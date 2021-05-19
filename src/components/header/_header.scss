@@ -60,3 +60,25 @@
          align-items: center;
      }
 }
+
+@media (max-width: $breakpoint-small) {
+    .header {
+       padding: 1rem;
+ 
+       form {
+          flex: 1;
+       }
+ 
+       &__menu {
+          display: block;
+       }
+       &__logo {
+          display: none;
+       }
+ 
+       &__icons > *:not(img) {
+          display: none;
+       }
+    }
+ }
+ 
