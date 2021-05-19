@@ -1,23 +1,23 @@
-
-import { Container } from '@material-ui/core';
+import React, { useEffect, useState } from 'react'
+import {Container} from 'react-bootstrap';
 import './App.css';
 import Header from "./components/header/Header"
 import Sidebar from './components/sidebar/Sidebar';
+import HomeScreen from './screens/homeScreen/HomeScreen';
+import './_app.scss'
 
 function App() {
   return (
-    //BEM NAMING COVENTION
-    <div className="app">
-    {/* <h1>Gify Explorer</h1>  */}
-    <Header/>
-    <div className="app_container"></div>
-    {/*Header*/}   
-    <Sidebar/> 
-    <Container fluid className="app__main">
-      <HomeScreen/>
-      </Container> 
-    {/*Trending*/}      
-    </div>
+    //BEM NAMING COVENTION//
+    <>
+      <Header/>
+      <div className="app__container border-info">
+        <Sidebar/>
+        <Container fluid className="app__main border border-warning">
+          <HomeScreen/>
+        </Container>
+      </div>
+    </>
   );
 }
 

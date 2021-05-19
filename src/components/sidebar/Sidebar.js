@@ -1,10 +1,10 @@
 import React from 'react';
-import "./_sidebar.scss";
+import "./_sidebar.sass";
 
 function sidebar() {
     return (
-        <div>
-            
+        <div className="border border-danger">
+            SideBar
         </div>
     )
 }

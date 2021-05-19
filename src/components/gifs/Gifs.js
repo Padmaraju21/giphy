@@ -4,7 +4,7 @@ import "./_gifs.scss";
 const gifs = () => {
     return (
         <div>
-            
+           Gifs 
         </div>
     )
 }
