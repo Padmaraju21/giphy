@@ -23,3 +23,7 @@ body {
     letter-spacing: 0.1px;
 }
 
+//to hide the scroll bar
+::-webkit-scrollbar {
+    width: 0px;
+ }
