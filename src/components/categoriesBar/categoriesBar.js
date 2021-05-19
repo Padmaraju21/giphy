@@ -10,7 +10,8 @@ const keywords = [
   'embarrassed','awesome',
   'clapping','high five',
 ]
-function CategoriesBar() {
+
+const CategoriesBar = () => {
 
   const [activeElement,setActiveElement] = useState('All')
   
@@ -30,7 +31,7 @@ function CategoriesBar() {
         </span>
      ))}
   </div>
-)
+ )
 }
 
 export default CategoriesBar
