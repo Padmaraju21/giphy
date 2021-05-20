@@ -1,5 +1,6 @@
 import React from 'react'
 import {useEffect , useState} from 'react'
+
 import axios from 'axios'
 import "./_gifs.scss";
 
@@ -19,6 +20,7 @@ const Gifs = () => {
         }
         fetchData()
     },[]);
+    
 
     const renderGifs = () => {
         return data.map(el => {

@@ -11,11 +11,12 @@ const HomeScreen = () => {
             <CategoriesBar/>
             <Row>
 
-    {[...new Array(20)].map(() => (
+     {[...new Array(20)].map(() => (
         <Col lg={3} md={4}>
             <Gifs/>
         </Col>
     ))}
+    
                
             </Row>
         </Container>

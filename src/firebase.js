@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+
 var firebaseConfig = {
     apiKey: "AIzaSyAisRq2HL9bABugIL_Fbw3F9OOezsJ0gX0",
     authDomain: "gifyexplorer.firebaseapp.com",
