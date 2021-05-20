@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import auth from '../../firebase'
-import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS } from '../action.type'
+import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOG_OUT } from '../action.type'
 
 
 export  const login = () =>async dispatch =>{
@@ -37,4 +37,14 @@ export  const login = () =>async dispatch =>{
           payload: error.message,
         })
     }
+}
+
+export const log_out =()=>async dispatch =>{
+    await auth.signOut()
+    dispatch({
+        type:LOG_OUT,
+})
+//deleting the session storage after user logout
+sessionStorage.removeItem('gify-access-token')
+sessionStorage.getItem('gify-user')
 }

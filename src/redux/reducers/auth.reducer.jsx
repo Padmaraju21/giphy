@@ -1,4 +1,4 @@
-import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS } from "../action.type"
+import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOG_OUT } from "../action.type"
 
 const initialState = {
     //creating the session storage 
@@ -38,6 +38,12 @@ switch(type){
             ...prevState,
             user:payload,
             loading:false
+        }
+
+        case LOG_OUT:return {
+            ...prevState,
+            accessToken:null,
+            user:null,
         }
         default:
             return prevState
