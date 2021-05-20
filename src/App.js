@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import {Container} from 'react-bootstrap';
 import './App.css';
 import Header from "./components/header/Header"
 import Sidebar from './components/sidebar/Sidebar';
 import HomeScreen from './screens/homeScreen/HomeScreen';
+//import Login from './screens/loginScreen/Login'
 import './_app.scss'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         </Container>
       </div>
     </>
+    // <Login/>
   );
 }
 
