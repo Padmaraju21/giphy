@@ -1,9 +1,14 @@
 import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS } from "../action.type"
 
 const initialState = {
-    accessToken:null,
-    user:null,
-    loading:false
+    //creating the session storage 
+    accessToken: sessionStorage.getItem('gify-access-token')
+      ? sessionStorage.getItem('gify-access-token')
+      : null,
+   user: sessionStorage.getItem('gify-user')
+      ? JSON.parse(sessionStorage.getItem('gify-user'))
+      : null,
+   loading: false,
 }
 
 export const authReducer = (prevState=initialState,action)=> {

@@ -1,12 +1,13 @@
-import React, {useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Container} from 'react-bootstrap';
 import './App.css';
 import Header from "./components/header/Header"
 import Sidebar from './components/sidebar/Sidebar';
+import { useSelector } from 'react-redux'
 import HomeScreen from './screens/homeScreen/HomeScreen';
 import Login from './screens/loginScreen/Login'
-import './_app.scss'
-import {BrowserRouter as Router, Redirect, Route,Switch} from 'react-router-dom'
+import './_app.scss' 
+import { Redirect, Route,Switch, useHistory} from 'react-router-dom'
 
 const Layout =({children}) =>{
   //for toggling the side bar in a smaller screen
@@ -29,10 +30,17 @@ const Layout =({children}) =>{
 }
 
 function App() {
-  
+    const { accessToken, loading } = useSelector(state => state.auth)
+ 
+    const history = useHistory()
+ 
+    useEffect(() => {
+       if (!loading && !accessToken) {
+          history.push('/auth')
+       }
+    }, [accessToken, loading, history])
   return (
     //BEM NAMING COVENTION//
-    <Router>
       <Switch>
       <Route path='/' exact>
         <Layout>
@@ -56,7 +64,6 @@ function App() {
         <Redirect to='/'/>
       </Route>
       </Switch>
-    </Router>
   );
 }
 

@@ -17,6 +17,10 @@ export  const login = () =>async dispatch =>{
             name:res.additionalUserInfo.profile.name,
             photoURL:res.additionalUserInfo.profile.picture,
         }
+        //Creating a session storage in the broswer for the user and the app
+        sessionStorage.setItem("gify-access-token",accessToken)
+        //Stringifying the profile as it is an object
+        sessionStorage.setItem("gify-user",JSON.stringify(profile))
         dispatch({
             type: LOGIN_SUCCESS,
             payload: accessToken,
