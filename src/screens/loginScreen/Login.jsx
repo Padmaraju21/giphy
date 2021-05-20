@@ -1,9 +1,9 @@
 import React from 'react'
 import './_login.scss'
-import {useDispatch} from 'react'
+import { useDispatch } from 'react-redux'
 import { login } from '../../redux/actions/auth.action'
 
-function Login() {
+const LoginScreen = () => {
    const dispatch = useDispatch()
 
    const handleLogin = () => {
@@ -24,4 +24,4 @@ function Login() {
     )
 }
 
-export default Login
+export default LoginScreen
