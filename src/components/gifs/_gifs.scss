@@ -1,18 +1,18 @@
 @import '../../base.scss';
 
 .gifs{
-   margin-bottom: 1rem;
-   padding: 1 rem;
-   cursor: pointer;
+   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
    &__top {
       margin-bottom: 0.5rem;
       position: relative;
-      
-      img {
+      .lazy-load-image-background {
          width: 100%;
       }
-    }
-    
    
+}
 }
