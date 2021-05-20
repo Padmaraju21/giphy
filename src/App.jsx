@@ -54,12 +54,6 @@ function App() {
         </Layout>
       </Route>
 
-      <Route path='/search'>
-        <Layout>
-          <h1>Search Results</h1>
-        </Layout>
-      </Route>
-
       <Route>
         <Redirect to='/'/>
       </Route>
