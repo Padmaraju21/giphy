@@ -10,7 +10,11 @@ In this Application we can also download our favourite Gifs for external sharing
 
 The styling is all handled via styled components.
 
-To run the application locally then dowmload the source_code and redirect to the folder on terminal and type:
+The Application is hosted using Firebase.
+
+You can visit the Application Here: https://tinyurl.com/gifyexplorer
+
+To run the application locally then download the source_code and redirect to the folder on terminal and type:
 
 ### npm start 
 
