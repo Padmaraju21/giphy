@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useEffect} from 'react'
 import {Search} from '../gifs/GifSearch'
 import {getTrending}from '../gifs/Gifs'
-import { BiDownload,BiLeftArrow,BiRightArrow } from "react-icons/bi";
+import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
     // STATES
@@ -115,13 +115,11 @@ const content = () => {
         return  data.map(g=> {
             return (
                 <div className='gif-card' key={g.id}>
-                <details>
                 {/* <summary>Show</summary> */}
                     {/* <h4>{g.title !== undefined ? (g.title.charAt(0).toUpperCase() + g.title.slice(1)) : ''}</h4> */}
                 <button onClick= {()=> handleDownload(g.images.fixed_height.url)} className="gif-download">
                     {/* <BiDownload alt="download"/> */}
                 </button>   
-                </details>
                 <img onClick= {()=> handleDownload(g.images.fixed_height.url)} className='image' src={g.images.fixed_width.url} alt="gif"/>
                 </div>
             )
@@ -136,28 +134,11 @@ const content = () => {
   return (
     <div>
     <header>
-    <a href="/catalog">
-        {/* <img className='svg' src={Home} alt="home"/> */}
-    </a>
-    <div className='gif-title'>
-    </div>
-    {/* <div><strong>Search:</strong> {title}</div> */}
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
+    <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
     </header>
-   <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
     <div className='gif-wrap'>
   
-    {trendSearch ? 
-    (
-        <div className='gif-trend-search'>
-        <ul> 
-        {tSearch.map((t,i)=> <li key={i}><strong>{i + 1}</strong> {t.toUpperCase()}</li>)}
-        </ul>
-        </div>
-    )
-    :
-    ''
-    }
       {content()}
     </div>
     <div className="pagination">

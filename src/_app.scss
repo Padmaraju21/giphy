@@ -49,12 +49,10 @@ header {
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: white;
-    margin: 10px auto;
+    
 }
 
-.App-link {
-    color: #045369;
-}
+
 
 .gif-wrap {
     /* display: grid;
@@ -62,7 +60,7 @@ header {
     place-items: center; */
     display: flex;
     flex-wrap: wrap;
-    margin: 10px;
+    
     padding: 5px;
 }
 
@@ -72,11 +70,6 @@ div.gif-card {
     flex: 1 1 300px;
     /* stretch */
     margin: 5px;
-}
-
-h1.gif-title-h1 {
-    font-size: 3rem;
-    text-transform: capitalize;
 }
 
 a,
@@ -96,23 +89,24 @@ img.svg {
 
 .pagination {
     padding: 20px;
+    position: center;
 }
 
 summary:focus {
     outline: 0;
 }
 
-details[open] summary {
-    padding: 5px;
-    transition: 1s ease-in-out;
-}
+// details[open] summary {
+//     padding: 5px;
+//     transition: 1s ease-in-out;
+// }
 
 .gif-search {
-    display: flex;
-    align-items: center;
-    max-width: 400px;
-    width: 100%;
-    margin: 16px auto;
+    flex: 0.6;
+        display: flex;
+        padding: 0.1rem;
+        border-radius: 3px;
+        background-color: f3f2f7;
 }
 
 .gif-search input {
@@ -150,11 +144,9 @@ button {
 }
 
 .gif-btn-submit {
-    flex:0.15;
-         display:flex;
-         justify-content: space-around;
-         align-items: center;
-     }
+    border: 1px;
+    background: grey;
+}
 
 .gif-btn-trending {
     cursor: pointer;
