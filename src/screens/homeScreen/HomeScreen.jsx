@@ -6,7 +6,8 @@ import {getTrending}from '../gifs/Gifs'
 import {MdExitToApp} from 'react-icons/md'
 import { useDispatch } from 'react-redux';
 import { log_out } from '../../redux/actions/auth.action'
-import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
+// import {InfiniteScroll} from 'react-infinite-scroll-component'
+// import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
     // STATES
@@ -29,6 +30,7 @@ const fetchData = async (title)=>{
 let URL = `https://api.giphy.com/v1/gifs/search?q=${title}&api_key=Q3O2EkqIyiDtKXq7VkaPtpX1ny6HvBDj&limit=${limit}&offset=${offset}`;
 // Try and catch
 try{
+    
     let fetchGif = await axios(URL);
     let fetchRes = await fetchGif;
     // Set State console log
@@ -52,6 +54,8 @@ try{
      setTrendSearch(false)
     
     }
+
+    
 }
 catch(error){
     if(error) throw error
@@ -140,11 +144,10 @@ const content = () => {
     <div>
     <header>
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
-    <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
-    <div className="logout" onClick={logOutHandler}>
-        <MdExitToApp size={23}/><span>LogOut</span>
-    </div>
+    <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Get More Trending Gifs</button>
+    <button className="logout" onClick={logOutHandler}>LogOut</button>
     </header>
+    <br/>
     <div className='gif-wrap'>
       {content()}
     </div>
