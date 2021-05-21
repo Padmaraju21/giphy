@@ -38,19 +38,12 @@ body {
 }
 
 header {
-    display: flex;
+    display: inline-flex;
     justify-content:space-between;
-    place-items: center;
+    align-items: center;
     margin-bottom: 10px;
 }
 
-.App {
-    text-align: center;
-    min-height: 100vh;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    
-}
 
 
 
@@ -74,39 +67,27 @@ div.gif-card {
 
 a,
 img {
-    cursor: pointer;
-}
-
-img {
     width: 100%;
     object-fit: cover;
     /* aspect-ratio: 16 / 9; */
 }
 
-img.svg {
-    width: 40px;
-}
 
-.pagination {
-    padding: 20px;
-    position: inherit;
-}
-
-summary:focus {
-    outline: 0;
-}
-
-// details[open] summary {
-//     padding: 5px;
-//     transition: 1s ease-in-out;
+// .pagination {
+//     margin:auto; /* Required */
+//  position:absolute; /* Required */
+//  bottom:0; /* Aligns at the bottom */
+//  left:0;right:0; /* Aligns horizontal center */
+//  max-height:100%; /* images bigger than 175 px  */
+//  max-width:100%;
+//     cursor: pointer;
 // }
 
 .gif-search {
     flex: 0.6;
-        display: flex;
+        display: inline-flex;
         padding: 1rem;
-        border-radius: 3px;
-        background-color: f3f2f7;
+        background-color: #f3f2f7;
 }
 
 .gif-search input {
@@ -116,7 +97,7 @@ summary:focus {
     background-color: transparent;
     color: #ffffff;
     font-size: 2rem;
-    max-width: 100;
+    
 }
 
 button:hover {
@@ -150,7 +131,6 @@ button {
 .gif-btn-trending {
     cursor: pointer;
     border: none;
-    margin: 0 10px;
     padding: 10px;
     text-transform: uppercase;
     border-radius: 4px;

@@ -14,12 +14,11 @@ export default function Gif() {
     const [title, setTitle] = React.useState('Gif');
     const [loader, setLoader] = React.useState(true);
     const [offset, setOffset] = React.useState(0);
-    const [limit, setLimit] = React.useState(8)
+    const [limit] = React.useState(20)
     const [totalCount, setTotalCount] = React.useState(0)
     const [search, setSearch] = React.useState('');
     const [trending, setTrending] = React.useState(false)
     const [trendSearch, setTrendSearch] = React.useState(false)
-    const [tSearch, setTsearch] = React.useState([])
     const dispatch = useDispatch()
    const logOutHandler = () => {
       dispatch(log_out())
@@ -122,10 +121,9 @@ const content = () => {
         return  data.map(g=> {
             return (
                 <div className='gif-card' key={g.id}>
-                {/* <summary>Show</summary> */}
-                    {/* <h4>{g.title !== undefined ? (g.title.charAt(0).toUpperCase() + g.title.slice(1)) : ''}</h4> */}
+                
                 <button onClick= {()=> handleDownload(g.images.fixed_height.url)} className="gif-download">
-                    {/* <BiDownload alt="download"/> */}
+
                 </button>   
                 <img onClick= {()=> handleDownload(g.images.fixed_height.url)} className='image' src={g.images.fixed_width.url} alt="gif"/>
                 </div>
@@ -144,14 +142,14 @@ const content = () => {
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
     <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
     <div className="logout" onClick={logOutHandler}>
-        <MdExitToApp size={23}/>
+        <MdExitToApp size={23}/><span>LogOut</span>
     </div>
     </header>
     <div className='gif-wrap'>
       {content()}
     </div>
     
-    <div className="pagination">
+    {/* <div className="pagination">
         {
             totalCount === 0 ?
             ''
@@ -160,15 +158,15 @@ const content = () => {
             <BiRightArrow onClick={handleNext}  alt="right"/>
             :
             offset >= totalCount ?
-            <BiLeftArrow onClick={handlePrev}  alt="left"/>
+            <BiLeftArrow className='svg'onClick={handlePrev}  alt="left"/>
             :
             <>
-            <BiLeftArrow onClick={handlePrev} alt="left"/>
-            <BiRightArrow onClick={handleNext} alt="right"/>
+            <BiLeftArrow className='svg'onClick={handlePrev} alt="left"/>
+            <BiRightArrow className='svg'onClick={handleNext} alt="right"/>
 
             </>
         }
-        </div>
+        </div> */}
     </div>
   )
 }
