@@ -14,5 +14,4 @@ To run the application locally then dowmload the source_code and redirect to the
 
 ### npm start 
 
-
-C:\Users\padma\Desktop\giphy.JPG
+![giphy](https://user-images.githubusercontent.com/55691203/119172759-3becd100-ba5e-11eb-91c0-a63ed7ebec6b.JPG)
