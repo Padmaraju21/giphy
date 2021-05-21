@@ -6,8 +6,8 @@ import {getTrending}from '../gifs/Gifs'
 import {MdExitToApp} from 'react-icons/md'
 import { useDispatch } from 'react-redux';
 import { log_out } from '../../redux/actions/auth.action'
-// import {InfiniteScroll} from 'react-infinite-scroll-component'
-// import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
+import {InfiniteScroll} from 'react-infinite-scroll-component'
+import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
     // STATES
@@ -152,24 +152,24 @@ const content = () => {
       {content()}
     </div>
     
-    {/* <div className="pagination">
+    <div className="pagination">
         {
             totalCount === 0 ?
             ''
             :
             offset < limit ?
-            <BiRightArrow onClick={handleNext}  alt="right"/>
+            <BiRightArrow  onClick={handleNext}  alt="right" size={26}/>
             :
             offset >= totalCount ?
-            <BiLeftArrow className='svg'onClick={handlePrev}  alt="left"/>
+            <BiLeftArrow className='svg'onClick={handlePrev}  alt="left" size={26}/>
             :
             <>
-            <BiLeftArrow className='svg'onClick={handlePrev} alt="left"/>
-            <BiRightArrow className='svg'onClick={handleNext} alt="right"/>
+            <BiLeftArrow className='svg'onClick={handlePrev} alt="left" size={26}/>
+            <BiRightArrow className='svg'onClick={handleNext} alt="right" size={26}/>
 
             </>
         }
-        </div> */}
+        </div>
     </div>
   )
 }
