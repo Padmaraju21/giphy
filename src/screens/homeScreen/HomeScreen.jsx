@@ -3,10 +3,8 @@ import axios from 'axios'
 import {useEffect} from 'react'
 import {Search} from '../gifs/GifSearch'
 import {getTrending}from '../gifs/Gifs'
-import {MdExitToApp} from 'react-icons/md'
 import { useDispatch } from 'react-redux';
 import { log_out } from '../../redux/actions/auth.action'
-import {InfiniteScroll} from 'react-infinite-scroll-component'
 import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
@@ -15,7 +13,7 @@ export default function Gif() {
     const [title, setTitle] = React.useState('Gif');
     const [loader, setLoader] = React.useState(true);
     const [offset, setOffset] = React.useState(0);
-    const [limit] = React.useState(20)
+    const [limit] = React.useState(12)
     const [totalCount, setTotalCount] = React.useState(0)
     const [search, setSearch] = React.useState('');
     const [trending, setTrending] = React.useState(false)
