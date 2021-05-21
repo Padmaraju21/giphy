@@ -3,8 +3,7 @@ import axios from 'axios'
 import {useEffect} from 'react'
 import {Search} from '../gifs/GifSearch'
 import {getTrending}from '../gifs/Gifs'
-import {fetchtrendSearch} from '../gifs/GifSearchTrending'
-//import Download from './Download.svg'
+import { BiDownload,BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
     // STATES
@@ -54,7 +53,10 @@ catch(error){
 
 }
 useEffect(()=>{
-    // if trending is false fwtch new data
+    if(trending){
+        getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)
+        }
+    // if trending is false fetch new data
     if(!trending){
         fetchData(title)
         }
@@ -77,6 +79,31 @@ const handleDownload = (url)=>{
     }
     xhr.send();
 }
+
+// Scroll on top function
+const onTop = () => {
+    let options = { top: 0, left: 0, behavior: 'smooth' };
+    window.scrollTo(options);
+}
+
+// Handle Next Pagination
+const handleNext = ()=>{
+    // Set loader true
+    setLoader(true);
+    // Add one page
+    setOffset(offset + limit)
+    // Go on top
+    onTop()
+}
+// Handle prev Pagination
+const handlePrev = ()=>{
+    // Loader true
+    setLoader(true);
+    // One page
+    setOffset(offset - limit) 
+    // Go on top
+    onTop()
+}
 /************************RENDERING CONTENT*************************/
 const content = () => {
     switch(true) {
@@ -89,12 +116,11 @@ const content = () => {
             return (
                 <div className='gif-card' key={g.id}>
                 <details>
-                <summary>Show</summary>
-                    <h4>{g.title !== undefined ? (g.title.charAt(0).toUpperCase() + g.title.slice(1)) : ''}</h4>
+                {/* <summary>Show</summary> */}
+                    {/* <h4>{g.title !== undefined ? (g.title.charAt(0).toUpperCase() + g.title.slice(1)) : ''}</h4> */}
                 <button onClick= {()=> handleDownload(g.images.fixed_height.url)} className="gif-download">
-                    {/* <img className='svg' src={Download} alt="download"/> */}
-                </button>
-                   
+                    {/* <BiDownload alt="download"/> */}
+                </button>   
                 </details>
                 <img onClick= {()=> handleDownload(g.images.fixed_height.url)} className='image' src={g.images.fixed_width.url} alt="gif"/>
                 </div>
@@ -115,11 +141,10 @@ const content = () => {
     </a>
     <div className='gif-title'>
     </div>
-    <div><strong>Search:</strong> {title}</div>
+    {/* <div><strong>Search:</strong> {title}</div> */}
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
     </header>
    <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
-   <button className='gif-btn-trendsearch' onClick={()=> trendSearch ? setTrendSearch(false) : fetchtrendSearch(setTrendSearch, trendSearch, setTsearch, setData)}>Trending Search</button>
     <div className='gif-wrap'>
   
     {trendSearch ? 
@@ -135,6 +160,25 @@ const content = () => {
     }
       {content()}
     </div>
+    <div className="pagination">
+        {
+            totalCount === 0 ?
+            ''
+            :
+            offset < limit ?
+            <BiRightArrow onClick={handleNext}  alt="right"/>
+            :
+            offset >= totalCount ?
+            <BiLeftArrow onClick={handlePrev}  alt="left"/>
+            :
+            <>
+            <BiLeftArrow onClick={handlePrev} alt="left"/>
+            <BiRightArrow onClick={handleNext} alt="right"/>
+
+            </>
+        }
+        
+        </div>
     </div>
   )
 }
