@@ -48,11 +48,11 @@ function App() {
         </Layout>
       </Route>
       
-      <Route path='/auth'>
+      {/* <Route path='/auth'>
         <Layout>
           <Login/>
         </Layout>
-      </Route>
+      </Route> */}
 
       <Route>
         <Redirect to='/'/>
