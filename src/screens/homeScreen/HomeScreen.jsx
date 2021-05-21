@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {useEffect} from 'react'
-
+import {Search} from '../gifs/GifSearch'
 import Download from './Download.svg'
 
 export default function Gif() {
@@ -106,7 +106,31 @@ const content = () => {
   }
 
   return (
-      <div>
-          Gify Exploer
-      </div>
+    <div>
+    <header>
+    <a href="/catalog">
+        <img className='svg' src={Home} alt="home"/>
+    </a>
+    <div className='gif-title'>
+    </div>
+    <div><strong>Search:</strong> {title}</div>
+    <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
+    </header>
+   <button className='gif-btn-trending' onClick={()=> fetchTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
+   <button className='gif-btn-trendsearch' onClick={()=> trendSearch ? setTrendSearch(false) : fetchTrendSearch(setTrendSearch, trendSearch, setTsearch, setData)}>Trending Search</button>
+    <div className='gif-wrap'>
+  
+    {trendSearch ? 
+    (
+        <div className='gif-trend-search'>
+        <ul> 
+        {tSearch.map((t,i)=> <li key={i}><strong>{i + 1}</strong> {t.toUpperCase()}</li>)}
+        </ul>
+        </div>
+    )
+    :
+    ''
+    }
+      {content()}
+    </div>
   )
