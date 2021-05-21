@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { BiSearchAlt } from "react-icons/bi";
 export function Search({search, setSearch, fetchData, setTitle}) {
 // Handle Submit
 const handleSubmit = (e)=>{
@@ -23,7 +23,7 @@ const handleSubmit = (e)=>{
             onChange={ e => setSearch(e.target.value)}
             /> 
             <button className='gif-btn-submit' type='submit'>
-            {/* <img className='svg' src={Enter} alt="enter" /> */}
+            <BiSearchAlt/>
             </button>
             </form>
         </div>

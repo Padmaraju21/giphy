@@ -1,50 +1,34 @@
-import React from 'react'
-import {useEffect , useState} from 'react'
 import axios from 'axios'
 
-import "./_gifs.scss";
-
-const Gifs = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-    const [data,setData]=useState([])
-    useEffect(()=>{
-        const fetchData = async () => {
-            try {
-            const results =await axios("https://api.giphy.com/v1/gifs/trending",{
-            params:{
-                api_key:"Q3O2EkqIyiDtKXq7VkaPtpX1ny6HvBDj"
+export const getTrending = async(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle) => {
+    try {
+        let URL = `https://api.giphy.com/v1/gifs/trending?&api_key=Q3O2EkqIyiDtKXq7VkaPtpX1ny6HvBDj&limit=${limit}&offset=${offset}`;
+        let getGif = await axios(URL);
+        let getRes = await getGif;
+        // Set State console log
+        if (getRes.status === 200) {
+            // console.log(fetchRes)
+            // Set Data
+            setData(getRes.data.data)
+                // Set Total Count
+            setTotalCount(getRes.data.pagination.total_count)
+                // Set loader false
+            setLoader(false)
+                // Set random
+            setTrending(true)
+                // Set title
+            if (title !== 'Trending') {
+                setTitle('Trending')
+                if (offset > 0) {
+                    setOffset(0)
+                }
             }
-            });
-
-            console.log(results);
-            setData(results.data.data); 
+            // Call new content
+            content()
+                // Set trend search false
+            setTrendSearch(false)
         }
-        catch (err) {
-            setIsError(true);
-            setTimeout(() => setIsError(false), 4000);
-          }
-    
-          setIsLoading(false);
-        };
-
-        fetchData();
-    },[]);
-
-    const renderGifs = () => {
-        return data.map(el => {
-            return (
-                <div key={el.id} className="gifs__top">
-                <img src={el.images.fixed_height.url} alt = ''/>
-            </div>
-            )
-        })
-    }
-    return (
-        <div className="gifs">
-           {renderGifs()} 
-        </div>
-    );
+    } catch (error) {
+        if (error) throw error;
+    }   
 }
-
-export default Gifs

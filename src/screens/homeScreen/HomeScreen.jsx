@@ -2,7 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import {useEffect} from 'react'
 import {Search} from '../gifs/GifSearch'
-import Download from './Download.svg'
+import {getTrending}from '../gifs/Gifs'
+import {fetchtrendSearch} from '../gifs/GifSearchTrending'
+//import Download from './Download.svg'
 
 export default function Gif() {
     // STATES
@@ -19,7 +21,7 @@ export default function Gif() {
 
 /**********************FETCHING DATA********************************/
 const fetchData = async (title)=>{
-let URL = `https://api.giphy.com/v1/gifs/search?q=${title}&api_key=${process.env.REACT_APP_GIFS_API_KEY}&limit=${limit}&offset=${offset}`;
+let URL = `https://api.giphy.com/v1/gifs/search?q=${title}&api_key=Q3O2EkqIyiDtKXq7VkaPtpX1ny6HvBDj&limit=${limit}&offset=${offset}`;
 // Try and catch
 try{
     let fetchGif = await axios(URL);
@@ -57,7 +59,7 @@ useEffect(()=>{
         fetchData(title)
         }
     },[offset])
-}
+
 /***************************HANDLING DOWNLOAD***************************** */
 const handleDownload = (url)=>{
     var xhr = new XMLHttpRequest();
@@ -90,7 +92,7 @@ const content = () => {
                 <summary>Show</summary>
                     <h4>{g.title !== undefined ? (g.title.charAt(0).toUpperCase() + g.title.slice(1)) : ''}</h4>
                 <button onClick= {()=> handleDownload(g.images.fixed_height.url)} className="gif-download">
-                    <img className='svg' src={Download} alt="download"/>
+                    {/* <img className='svg' src={Download} alt="download"/> */}
                 </button>
                    
                 </details>
@@ -109,15 +111,15 @@ const content = () => {
     <div>
     <header>
     <a href="/catalog">
-        <img className='svg' src={Home} alt="home"/>
+        {/* <img className='svg' src={Home} alt="home"/> */}
     </a>
     <div className='gif-title'>
     </div>
     <div><strong>Search:</strong> {title}</div>
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
     </header>
-   <button className='gif-btn-trending' onClick={()=> fetchTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
-   <button className='gif-btn-trendsearch' onClick={()=> trendSearch ? setTrendSearch(false) : fetchTrendSearch(setTrendSearch, trendSearch, setTsearch, setData)}>Trending Search</button>
+   <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
+   <button className='gif-btn-trendsearch' onClick={()=> trendSearch ? setTrendSearch(false) : fetchtrendSearch(setTrendSearch, trendSearch, setTsearch, setData)}>Trending Search</button>
     <div className='gif-wrap'>
   
     {trendSearch ? 
@@ -133,4 +135,6 @@ const content = () => {
     }
       {content()}
     </div>
+    </div>
   )
+}
