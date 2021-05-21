@@ -3,6 +3,9 @@ import axios from 'axios'
 import {useEffect} from 'react'
 import {Search} from '../gifs/GifSearch'
 import {getTrending}from '../gifs/Gifs'
+import {MdExitToApp} from 'react-icons/md'
+import { useDispatch } from 'react-redux';
+import { log_out } from '../../redux/actions/auth.action'
 import { BiLeftArrow,BiRightArrow } from "react-icons/bi";
 
 export default function Gif() {
@@ -17,6 +20,10 @@ export default function Gif() {
     const [trending, setTrending] = React.useState(false)
     const [trendSearch, setTrendSearch] = React.useState(false)
     const [tSearch, setTsearch] = React.useState([])
+    const dispatch = useDispatch()
+   const logOutHandler = () => {
+      dispatch(log_out())
+   }
 
 /**********************FETCHING DATA********************************/
 const fetchData = async (title)=>{
@@ -136,11 +143,14 @@ const content = () => {
     <header>
     <Search search={search} setSearch={setSearch} fetchData={fetchData} setTitle={setTitle}/>
     <button className='gif-btn-trending' onClick={()=> getTrending(limit, offset, setOffset, setTrending, setData, setLoader, setTotalCount, content, setTrendSearch, title, setTitle)}>Trending</button>
+    <div className="logout" onClick={logOutHandler}>
+        <MdExitToApp size={23}/>
+    </div>
     </header>
     <div className='gif-wrap'>
-  
       {content()}
     </div>
+    
     <div className="pagination">
         {
             totalCount === 0 ?
@@ -158,7 +168,6 @@ const content = () => {
 
             </>
         }
-        
         </div>
     </div>
   )
